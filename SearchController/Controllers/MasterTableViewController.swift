@@ -33,6 +33,7 @@ class MasterTableViewController: UITableViewController, UISearchResultsUpdating 
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         if isFiltering() {
             return filteredCandies.count
         }
@@ -57,17 +58,17 @@ class MasterTableViewController: UITableViewController, UISearchResultsUpdating 
     }
 
     // MARK: - Navigation
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         guard segue.identifier == "DetailSegue",
-            let indexPath = tableView.indexPathForSelectedRow,
-            let detailViewController = segue.destination as? DetailViewController
-        else {
-            return
-        }
+              let indexPath = tableView.indexPathForSelectedRow,
+              let detailViewController = segue.destination as? DetailViewController else {
+                  return
+              }
         
         let candy: Candy
-
+        
         if isFiltering() {
             candy = filteredCandies[indexPath.row]
         } else {
